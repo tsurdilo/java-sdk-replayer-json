@@ -1,9 +1,5 @@
 package io.temporal.utils;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,12 +34,6 @@ public class PathHistory {
             default: return "";
         }
     }
-
-    private static String getFileAsString(String fileName) throws IOException {
-        File file = new File(PathHistory.class.getClassLoader().getResource(fileName).getFile());
-        return new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
-    }
-
 
     private static String forEvent(String event) {
         switch (event) {
@@ -88,7 +78,7 @@ public class PathHistory {
             case "SignalExternalWorkflowExecutionFailed": return "EVENT_TYPE_SIGNAL_EXTERNAL_WORKFLOW_EXECUTION_FAILED";
             case "ExternalWorkflowExecutionSignaled": return "EVENT_TYPE_EXTERNAL_WORKFLOW_EXECUTION_SIGNALED";
             case "UpsertWorkflowSearchAttributes": return "EVENT_TYPE_UPSERT_WORKFLOW_SEARCH_ATTRIBUTES";
-            default: return "null";
+            default: return "";
         }
     }
 }
